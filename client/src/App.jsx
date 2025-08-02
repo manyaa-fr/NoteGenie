@@ -45,7 +45,7 @@ function App() {
 
         // If proxy fails, try direct backend connection
         if (!response || !response.ok) {
-          apiUrl = 'http://localhost:5000/api/summarize';
+          apiUrl = 'https://notegenie-01yq.onrender.com/api/summarize';
           response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
