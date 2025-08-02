@@ -9,12 +9,29 @@ const PORT = process.env.PORT || 5000;
 
 // Enhanced CORS configuration for production
 const corsOptions = {
-  origin: [
-    'http://localhost:3000',
-    'http://localhost:5173',
-    'https://note-genie-plum.vercel.app',
-    'https://notegenie-01yq.onrender.com'
-  ],
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    const allowedOrigins = [
+      'http://localhost:3000',
+      'http://localhost:5173',
+      'https://note-genie-plum.vercel.app',
+      'https://notegenie-01yq.onrender.com'
+    ];
+    
+    // Allow any Vercel subdomain
+    if (origin.includes('vercel.app')) {
+      return callback(null, true);
+    }
+    
+    // Check if origin is in allowed list
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true);
+    }
+    
+    callback(new Error('Not allowed by CORS'));
+  },
   credentials: true,
   optionsSuccessStatus: 200,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -116,19 +133,23 @@ ${text}`;
   return prompt;
 }
 
-app.get('/', (req, res) => {
+// Health check endpoint
+app.get('/api/health', (req, res) => {
   res.json({ 
-    status: 'Server is running!',
+    status: 'OK', 
+    message: 'NoteGenie API is running',
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development'
   });
 });
 
-// Root endpoint
+// Root endpoint for Render health checks
 app.get('/', (req, res) => {
-  res.json({
-    message: 'NoteGenie API Server',
-    status: 'running',
+  res.json({ 
+    status: 'Server is running!',
+    message: 'NoteGenie Backend API',
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development'
   });
 });
 
