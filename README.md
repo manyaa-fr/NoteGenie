@@ -1,220 +1,141 @@
-# NoteGenie 🧠 - AI Study Notes Summarizer
+NoteGenie 🧠 - AI Study Notes Summarizer
+A clean, beautiful, and efficient AI-powered web application that transforms study materials into concise summaries with bullet points, definitions, and optional quiz questions.
 
-A beautiful and intelligent web application that uses Google's Generative AI (Gemini Pro) to transform your study materials into clear, structured summaries with bullet points, definitions, and optional quiz questions.
+✨ Features
+Smart Summarization: AI-powered content analysis using Google Gemini API
+Clean UI: Minimalistic design with dark/light mode toggle
+Interactive Elements: Loading animations, hover effects, and smooth transitions
+Responsive Design: Works perfectly on desktop, tablet, and mobile devices
+Quiz Generation: Optional Q&A format for better retention
+Copy to Clipboard: Easy sharing and saving of summaries
+Sample Content: Pre-loaded example for quick testing
+🛠️ Tech Stack
+Frontend: React + Vite
+Backend: Express.js + Node.js
+AI Integration: Google Gemini 2.0 Flash API
+Styling: Vanilla CSS with CSS custom properties
+Deployment: Ready for Vercel, Replit, or any hosting platform
+🚀 Quick Start
+1. Clone and Install
+bash
+git clone <your-repo-url>
+cd notegenie
+npm install
+2. Environment Setup
+Create a .env file in the root directory:
 
-![NoteGenie Preview](https://img.shields.io/badge/Status-Ready-green) ![License](https://img.shields.io/badge/License-MIT-blue) ![Google AI](https://img.shields.io/badge/Google-Gemini--Pro-purple)
+bash
+GEMINI_API_KEY=your_gemini_api_key_here
+PORT=5000
+3. Get Your Gemini API Key
+Go to Google AI Studio
+Create a new API key
+Copy and paste it into your .env file
+4. Development
+Run both frontend and backend:
 
-## ✨ Features
+bash
+# Terminal 1 - Backend
+node server.js
 
-- **🤖 AI-Powered Summarization**: Uses Google's Gemini Pro for intelligent content analysis
-- **📝 Structured Output**: Generates organized summaries with bullet points, definitions, and Q&A
-- **🌙 Dark/Light Theme**: Toggle between beautiful themes with persistent preference
-- **📱 Responsive Design**: Works perfectly on desktop, tablet, and mobile devices
-- **💾 Local Storage**: API key and theme preferences saved locally
-- **📤 Export Options**: Download summaries as text files or copy to clipboard
-- **⚡ Real-time Feedback**: Character counter, loading animations, and notifications
-- **🔒 Secure**: API key stored locally, never sent to external servers
+# Terminal 2 - Frontend  
+npm run dev
+Visit http://localhost:3000 to use the app!
 
-## 🚀 Quick Start
-
-### Prerequisites
-
-- A modern web browser (Chrome, Firefox, Safari, Edge)
-- Google AI API key (already configured in the app)
-
-### Local Development
-
-1. **Clone or download the project**
-   ```bash
-   git clone https://github.com/manyaa-fr/NoteGenie.git
-   cd notegenie
-   ```
-
-2. **Open the application**
-   - Simply open `index.html` in your web browser
-   - Or use a local server:
-     ```bash
-     # Using Python 3
-     python -m http.server 8000
-     
-     # Using Node.js (if you have http-server installed)
-     npx http-server
-     
-     # Using PHP
-     php -S localhost:8000
-     ```
-
-3. **API Key Ready**
-   - Your Google AI API key is already configured
-   - No additional setup required
-
-4. **Start summarizing!**
-   - Paste your study material in the input area
-   - Toggle Q&A generation if desired
-   - Click "Generate Summary" and watch the magic happen
-
-## 📋 Usage Examples
-
-### Example Input
-```
-Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy, usually from the sun, into chemical energy stored in glucose and other organic compounds. This process occurs in the chloroplasts of plant cells, specifically in the thylakoid membranes where chlorophyll molecules absorb light energy. The overall chemical equation for photosynthesis is: 6CO₂ + 6H₂O + light energy → C₆H₁₂O₆ + 6O₂. This process is essential for life on Earth as it provides oxygen for respiration and serves as the foundation of the food chain.
-```
-
-### Example Output
-```
-🌿 Summary:
-• Plants convert sunlight into chemical energy through photosynthesis
-• The process occurs in chloroplasts within plant cells
-• Chlorophyll molecules in thylakoid membranes capture light energy
-• Chemical equation: 6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂
-• Photosynthesis is fundamental to Earth's food chain and oxygen production
-
-📘 Definitions:
-• Photosynthesis: The process by which plants convert light energy into chemical energy
-• Chloroplasts: Organelles in plant cells where photosynthesis occurs
-• Chlorophyll: Green pigment that absorbs light energy
-• Thylakoid membranes: Structures within chloroplasts where light reactions occur
-
-📝 Quiz Questions:
-Q: What is the main purpose of photosynthesis?
-A: To convert light energy into chemical energy stored in glucose.
-
-Q: Where does photosynthesis occur in plant cells?
-A: In the chloroplasts, specifically in the thylakoid membranes.
-
-Q: What are the inputs and outputs of photosynthesis?
-A: Inputs: CO₂, H₂O, and light energy. Outputs: Glucose (C₆H₁₂O₆) and oxygen (O₂).
-```
-
-## 🛠️ Technical Details
-
-### Tech Stack
-- **Frontend**: Vanilla HTML, CSS, JavaScript
-- **AI Backend**: Google Generative AI (Gemini Pro) API
-- **Styling**: Custom CSS with CSS Variables for theming
-- **Icons**: Font Awesome 6.0
-- **Storage**: Local Storage for preferences
-
-### File Structure
-```
+5. Production Build
+bash
+npm run build
+📁 Project Structure
 notegenie/
-├── index.html          # Main HTML file
-├── style.css           # Styles and theming
-├── script.js           # JavaScript functionality
-├── README.md           # This file
-└── assets/             # Optional assets folder
-```
+├── src/
+│   ├── components/
+│   │   ├── Header.jsx
+│   │   ├── InputSection.jsx
+│   │   ├── OutputSection.jsx
+│   │   ├── ThemeToggle.jsx
+│   │   └── LoadingSpinner.jsx
+│   ├── styles/
+│   │   ├── index.css
+│   │   ├── App.css
+│   │   ├── Header.css
+│   │   ├── InputSection.css
+│   │   ├── OutputSection.css
+│   │   ├── ThemeToggle.css
+│   │   └── LoadingSpinner.css
+│   ├── App.jsx
+│   └── main.jsx
+├── server.js
+├── package.json
+├── vite.config.js
+└── index.html
+🎯 How It Works
+Input: Paste your study materials (up to 5000 characters)
+Configure: Toggle quiz questions on/off
+Process: AI analyzes and summarizes the content
+Output: Get formatted summaries with:
+🌿 Bullet Point Summary
+📘 Key Definitions
+📝 Quiz Questions (optional)
+🎨 Design Features
+Gradient Headers: Eye-catching background animations
+Smooth Animations: Loading spinners, hover effects, and transitions
+Dark Mode: Complete theme switching with system preference detection
+Responsive Layout: Mobile-first design approach
+Accessibility: Proper focus states and semantic HTML
+🚀 Deployment Options
+Vercel (Recommended)
+Connect your GitHub repository
+Add environment variables in Vercel dashboard
+Deploy automatically
+Replit
+Import from GitHub
+Add secrets for environment variables
+Run with npm run dev
+Traditional Hosting
+Build with npm run build
+Serve the dist folder
+Deploy backend separately
+🔧 Configuration
+API Integration
+The app uses Google Gemini 2.0 Flash API with these settings:
 
-### API Configuration
-- **Model**: Gemini Pro
-- **Max Output Tokens**: 1000
-- **Temperature**: 0.7 (balanced creativity and accuracy)
-- **System Prompt**: Optimized for educational content summarization
+Temperature: 0.7 (balanced creativity)
+Max Tokens: 2048 (comprehensive summaries)
+Top K: 40, Top P: 0.95 (quality filtering)
+Customization
+Modify prompts in server.js
+Adjust colors in CSS custom properties
+Change character limits in components
+📱 Mobile Support
+Fully responsive design with:
 
-## 🌐 Deployment
+Touch-friendly interfaces
+Optimized typography
+Adaptive layouts
+Mobile-specific animations
+🔒 Security
+API keys stored server-side only
+Input validation and sanitization
+CORS protection
+Rate limiting ready
+🐛 Troubleshooting
+API Issues:
 
-### Option 1: GitHub Pages (Free)
-1. Push your code to a GitHub repository
-2. Go to Settings → Pages
-3. Select source branch (usually `main`)
-4. Your app will be available at `https://username.github.io/repository-name`
+Verify your Gemini API key
+Check network connectivity
+Monitor API usage limits
+Build Issues:
 
-### Option 2: Netlify (Free)
-1. Drag and drop the project folder to [netlify.com](https://netlify.com)
-2. Your app will be deployed instantly with a custom URL
+Clear node_modules and reinstall
+Check Node.js version (16+ recommended)
+Verify all dependencies
+📄 License
+MIT License - feel free to use for personal and commercial projects!
 
-### Option 3: Vercel (Free)
-1. Install Vercel CLI: `npm i -g vercel`
-2. Run `vercel` in the project directory
-3. Follow the prompts to deploy
+🤝 Contributing
+Fork the repository
+Create a feature branch
+Make your changes
+Submit a pull request
+Happy Studying! 🎓✨
 
-### Option 4: Replit (Free)
-1. Create a new Repl
-2. Upload the project files
-3. Run the project
-
-## 🔧 Customization
-
-### Changing the AI Model
-Edit the `callOpenAI` function in `script.js`:
-```javascript
-model: 'gpt-4', // Change to gpt-4 for better results (requires API access)
-```
-
-### Modifying the Prompt
-Edit the `buildPrompt` function in `script.js` to customize the AI's behavior:
-```javascript
-let prompt = `Your custom prompt here...`;
-```
-
-### Adding New Themes
-Add new theme variables in `style.css`:
-```css
-[data-theme="custom"] {
-    --bg-primary: #your-color;
-    --text-primary: #your-color;
-    /* ... other variables */
-}
-```
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**"Error generating summary"**
-- Check your OpenAI API key is correct
-- Ensure you have sufficient API credits
-- Verify your internet connection
-
-**"API key not working"**
-- Make sure the key starts with `sk-`
-- Check if the key has the necessary permissions
-- Try regenerating the key in OpenAI dashboard
-
-**App not loading properly**
-- Clear browser cache and reload
-- Check browser console for JavaScript errors
-- Ensure all files are in the same directory
-
-### Browser Compatibility
-- Chrome 80+
-- Firefox 75+
-- Safari 13+
-- Edge 80+
-
-## 📈 Performance Tips
-
-- Keep input under 5000 characters for optimal performance
-- Use the Q&A toggle only when needed to save API tokens
-- Clear browser cache regularly for smooth operation
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- OpenAI for providing the GPT API
-- Font Awesome for the beautiful icons
-- The open-source community for inspiration
-
-## 📞 Support
-
-If you encounter any issues or have questions:
-- Open an issue on GitHub
-- Check the troubleshooting section above
-- Ensure you're using a supported browser
-
----
-
-**Made with ❤️ for students and learners everywhere**
-
-*NoteGenie - Making studying smarter, one summary at a time! 🧠✨* 

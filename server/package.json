@@ -1,0 +1,27 @@
+{
+  "name": "notegenie",
+  "version": "1.0.0",
+  "description": "A modern web application that uses Google's Gemini AI to transform study materials into clear, structured summaries with bullet points, definitions, and optional quiz questions.",
+  "homepage": "https://github.com/manyaa-fr/NoteGenie#readme",
+  "bugs": {
+    "url": "https://github.com/manyaa-fr/NoteGenie/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manyaa-fr/NoteGenie.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  }
+}
