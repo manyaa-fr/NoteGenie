@@ -8,11 +8,15 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'https://notegenie-01yq.onrender.com',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json({ limit: '10mb' }));
 
 // Your Gemini API Key - Add this to your .env file
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'YOUR_GEMINI_API_KEY_HERE';
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY ;
 
 app.post('/api/summarize', async (req, res) => {
   try {
@@ -80,8 +84,23 @@ ${text}`;
   return prompt;
 }
 
+// Health check endpoint
 app.get('/', (req, res) => {
-  res.json({ status: 'Server is running!' });
+  res.json({ 
+    status: 'OK', 
+    message: 'NoteGenie API is running',
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development'
+  });
+});
+
+// Root endpoint for Render health checks
+app.get('/', (req, res) => {
+  res.json({ 
+    status: 'Server is running!',
+    message: 'NoteGenie Backend API',
+    timestamp: new Date().toISOString()
+  });
 });
 
 app.listen(PORT, () => {

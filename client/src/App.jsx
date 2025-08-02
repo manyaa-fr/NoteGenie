@@ -64,7 +64,8 @@ function App() {
         const data = await response.json();
         setSummary(data.summary);
       } else {
-        // Production environment
+        // Production environment - use deployed backend
+        apiUrl = 'https://notegenie-01yq.onrender.com/api/summarize';
         const response = await fetch(apiUrl, {
           method: 'POST',
           headers: {
