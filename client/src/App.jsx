@@ -4,7 +4,7 @@ import InputSection from './components/InputSection';
 import OutputSection from './components/OutputSection';
 import ThemeToggle from './components/ThemeToggle';
 import LoadingSpinner from './components/LoadingSpinner';
-import './styles/App.css';
+import './App.css';
 
 function App() {
   const [inputText, setInputText] = useState('');
