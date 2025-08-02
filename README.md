@@ -251,16 +251,12 @@ notegenie/
 
 ## 🔧 API Reference
 
-### Base URL
-```
-http://localhost:5000/api
-```
 
 ### Endpoints
 
 #### Health Check
 ```http
-GET /api/health
+GET /
 ```
 
 **Response:**

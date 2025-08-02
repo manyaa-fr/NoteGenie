@@ -8,9 +8,9 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'https://notegenie-01yq.onrender.com',
         changeOrigin: true,
-        secure: false,
+        secure: true,
         ws: true,
         configure: (proxy, _options) => {
           proxy.on('error', (err, _req, _res) => {
