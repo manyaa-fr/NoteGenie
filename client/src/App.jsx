@@ -4,7 +4,7 @@ import InputSection from './components/InputSection';
 import OutputSection from './components/OutputSection';
 import ThemeToggle from './components/ThemeToggle';
 import LoadingSpinner from './components/LoadingSpinner';
-import './App.css';
+import './styles/App.css';
 
 function App() {
   const [inputText, setInputText] = useState('');
@@ -25,12 +25,13 @@ function App() {
     setSummary('');
 
     try {
-      // Try different API endpoints
-      let apiUrl = '/api/summarize';
+      // Determine the correct API endpoint based on environment
+      let apiUrl;
       
-      // Check if we're in development and backend might be on different port
       if (window.location.hostname === 'localhost') {
-        // First try the proxy
+        // Development environment - try proxy first, then direct
+        apiUrl = '/api/summarize';
+        
         let response = await fetch(apiUrl, {
           method: 'POST',
           headers: {
@@ -64,8 +65,9 @@ function App() {
         const data = await response.json();
         setSummary(data.summary);
       } else {
-        // Production environment - use deployed backend
+        // Production environment - use Render backend URL
         apiUrl = 'https://notegenie-01yq.onrender.com/api/summarize';
+        
         const response = await fetch(apiUrl, {
           method: 'POST',
           headers: {
@@ -78,7 +80,8 @@ function App() {
         });
 
         if (!response.ok) {
-          throw new Error(`Server responded with status: ${response.status}`);
+          const errorText = await response.text();
+          throw new Error(`Server responded with status: ${response.status}. ${errorText}`);
         }
 
         const data = await response.json();
@@ -86,7 +89,15 @@ function App() {
       }
     } catch (err) {
       console.error('Error:', err);
-      setError(`Failed to generate summary: ${err.message}. Make sure the backend server is running on port 5000.`);
+      let errorMessage = `Failed to generate summary: ${err.message}`;
+      
+      if (window.location.hostname === 'localhost') {
+        errorMessage += '. Make sure the backend server is running on port 5000.';
+      } else {
+        errorMessage += '. Please check if the backend server is running.';
+      }
+      
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }
